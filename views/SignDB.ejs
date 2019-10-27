@@ -6,6 +6,7 @@
     <title>Start</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='dropDownStyle.css'>
     <script src="/socket.io/socket.io.js"></script>
     <script src= 
        "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
@@ -14,9 +15,16 @@
 </head>
 <body>
     <div id ="videoselectorwrap">
-    <select id="selector" class="id_100" style="width: 200px;">
+    <select id="selection" class="id_100" style="width: 200px;">
         <option></option>
     </select>
+    
+<div class="lang-select">
+    <button class="btn-select" value="">hoi</button>
+    <div class="b">
+    <ul id="a"></ul>
+    </div>
+    </div>
     <video id="video1" autoplay></video>
     <div id="CheckButtonsWrap">
         <div id="CheckButtonStart" class="CheckButton">Start</div>
@@ -29,5 +37,5 @@
 </body>
 <script src="leap-0.6.4.js"></script>
 <script src='scriptSignDB.js'></script>
-
+<script src='dropDownScript.js'></script>
 </html>

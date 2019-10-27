@@ -7,7 +7,7 @@ socket.once('SignArray', function(data){
     for (let d = 0; d  < data.length; d++) {
         const element = data[d];
         console.log(element)
-        document.getElementById('selector').innerHTML += '<option value='+element+ '>' + element + '</option>';
+        document.getElementById('selection').innerHTML += '<option value='+element+ ' data-thumbnail="Signs/'+element+'.jpg">' + element + '</option>';
     }
 })
 
@@ -68,9 +68,11 @@ $('#CheckButtonStop').click(function(){
     document.getElementById('video1').style.border = "10px solid red";
     clearInterval(checkHandInterval)
 })
-
+let dataSignName ="";
 socket.on('SignName', function(data){
     console.log(data);
     document.getElementById('SignData').innerHTML = data;
+    dataSignName = data;
+    $('.id_100 option').removeAttr('selected')
     $('.id_100 option[value='+data+']').attr('selected','selected');
 })
