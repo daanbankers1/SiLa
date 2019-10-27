@@ -1,0 +1,19 @@
+{
+  "name": "fingersarray",
+  "version": "1.0.0",
+  "description": "Checking if array is in database",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Daan Bankers",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "expressjs": "^1.0.1",
+    "mongodb": "^3.3.2",
+    "socketio": "^1.0.0"
+  }
+}

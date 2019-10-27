@@ -1,0 +1,94 @@
+body{
+    margin:0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+h1{
+    
+    color:black;
+    font-size:120px;
+    width:100%;
+    margin:0;
+    display:flex;
+    justify-content: center;
+}
+
+h2{
+
+    color:black;
+    width:100%;
+    margin:0;
+    display:flex;
+    justify-content: center;
+}
+
+#exampleandcambox{
+    width:100%;
+    border:1px solid black;
+    height:auto;
+    display:flex;
+    justify-content: center;
+}
+
+.examplebox{
+    width:50%;
+    border:1px solid red;
+    min-height:10vh;
+}
+
+#video{
+    width:100%;
+}
+
+#video1{
+    width:100%;
+    border:10px solid red;
+    border-radius:10px;
+}
+
+#videoselectorwrap{
+    width:30%;
+    height:auto;
+    flex-wrap:wrap;
+
+}
+
+#CheckButtonsWrap{
+    width:100%;
+    height:auto;
+    display:flex;
+    justify-content:space-around;
+
+}
+
+.CheckButton{
+    width:33%;
+    height:30px;
+    border-radius: 5px;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border:1px solid black;
+}
+
+.CheckButton:hover{
+    cursor:pointer;
+}
+
+#CheckButtonStart{
+    background-color:rgb(0, 189, 0);
+}
+
+#CheckButtonStart:hover{
+    background-color:rgb(8, 255, 8);
+}
+
+
+#CheckButtonStop{
+    background-color:red;
+}
+
+#CheckButtonStop:hover{
+    background-color:rgb(255, 88, 88);
+}

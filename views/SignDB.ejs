@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Start</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src= 
+       "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
+       </script> 
+    
+</head>
+<body>
+    <div id ="videoselectorwrap">
+    <select id="selector" class="id_100" style="width: 200px;">
+        <option></option>
+    </select>
+    <video id="video1" autoplay></video>
+    <div id="CheckButtonsWrap">
+        <div id="CheckButtonStart" class="CheckButton">Start</div>
+        <div id="CheckButtonStop" class="CheckButton">Stop</div>
+    </div>
+    U kunt ook op spatie drukken om te stoppen
+    <h2 id="SignData"></h2>
+
+    </div>
+</body>
+<script src="leap-0.6.4.js"></script>
+<script src='scriptSignDB.js'></script>
+
+</html>
