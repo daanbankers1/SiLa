@@ -1,65 +1,72 @@
+// INITIALIZE DEPENDENCIES
+//Database link
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/SignLanguage";
+
 var http = require('http');
 var express = require('express'),
   app = module.exports.app = express();
 var server = http.createServer(app);
-
 server.listen(8000);
 app.use(express.static('views'))
 var io = require('socket.io').listen(server); 
-let SignArray = [];
-
-
 var listener = io.listen(server);
 
+//Array for all signs out of database
+let SignArray = [];
+
+//Render indexs when the website gets /
 app.get('/', function(req,res){
     res.render('index.ejs')
 })
 
+//Render SignDB when the website gets /start
 app.get('/start', function(req,res){
     res.render('SignDB.ejs')
+    //Fill the selection html element with items out of database
     fillDropdownTable();
 })
 
+//FIlling the select html element
 function fillDropdownTable(){
     MongoClient.connect(url, function(err, db) {
-        //error handling
+        //Error handling
         if (err) throw err;
-        //Database aanroepen
-
+        //Call database
         var dbo = db.db("SignLanguage");
 
+        //Get items out of Database Collection Signs
         dbo.collection("Signs").find({}).toArray(function(err, result) {
+            //error handling
             if (err) throw err;
+            //Adding the sign names to array
             for (let i = 0; i < result.length; i++) {
                 const element = result[i];
                 SignArray.push(element.name)
             }
-            // console.log(SignArray);
+            // Sending Array to the clientside
             io.emit('SignArray', SignArray);
             db.close();
             SignArray = [];
-          });
-    
-    
+          });  
 })
 }
 
-let SignName = "";
+//Variable to get handtype left or right
 let handtype = "";
+//Array foor extended/niet extended vingers
 let dataArray = [];
 
+//Socket Listeners
 var listener = io.listen(server);
 
     listener.sockets.on('connection', function(socket){
       
+    //What happens when get fingerarray from client
         socket.on('fingerarray', function(data){
-            console.log(data);
-            dataArray = data;
-            
+            dataArray = data;        
         });
-
+    //What happens when get handtype from client
         socket.on('handtype', function(data){
           handtype = data;
         })
@@ -68,37 +75,27 @@ var listener = io.listen(server);
         
  })
 
-setInterval(checkinDB, 2000);
+ //Setting interval for checking if a Sign is made
+setInterval(checkinDB, 500);
 
+//Function for checking if a Sign is made
 function checkinDB(){
-    console.log(dataArray);
     MongoClient.connect(url, function(err, db) {
         //error handling
         if (err) throw err;
-        //Database aanroepen
+        //Call database
         var dbo = db.db("SignLanguage");
-        //Dingen ophalen uit de database tabel
+        //Get sign out of table
         dbo.collection("Signs").find({extended : dataArray}).toArray(function(err, TheSign) {
         //error handling
           if (err) throw err;
-        //Ideeën weergeven ter controle
+        //Sending the sign thats made to the client
          if(TheSign != ""){
-             console.log(TheSign[0].name);
-             SignName = TheSign[0].name;
-             io.emit('SignName', TheSign[0].name)
-                               
-            
+             io.emit('SignName', TheSign[0].name)  
          }   
          else{
           io.emit('SignName', 'none')
-          
-          SignName = "";
-         }
-         //Idee renderen  
-         
-         
-    })
-    
-    
+         }     
+    })  
 })
 }
