@@ -36,7 +36,7 @@ function fillDropdownTable(){
                 const element = result[i];
                 SignArray.push(element.name)
             }
-            console.log(SignArray);
+            // console.log(SignArray);
             io.emit('SignArray', SignArray);
             db.close();
             SignArray = [];
@@ -91,6 +91,7 @@ function checkinDB(){
          }   
          else{
           io.emit('SignName', 'none')
+          
           SignName = "";
          }
          //Idee renderen  
