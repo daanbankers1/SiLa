@@ -46,6 +46,7 @@ function checkHand(){
         //Feedback geven over of er handen in beeld zijn en hoeveel
             $('#SystemFeedback').text('Gedetecteerde handen:'+ frame.hands.length) 
         
+        document.getElementById('InstructionBottom').style.display = 'none';
       
         //Fingerextendarray resetten voordat er nieuwe data ingestopt word
         fingerextendarray = [];
@@ -67,12 +68,15 @@ function checkHand(){
         
         
         
+        
     }
     //If theres no hands in the frame
     else{
         fingerextendarray = [];
         socket.emit('fingerarray', fingerextendarray)
         document.getElementById('SystemFeedback').innerHTML = 'Gedetecteerde handen: 0';
+        document.getElementById('InstructionBottom').style.display = 'block';
+        
     }
 }
 
@@ -133,7 +137,6 @@ let dataSignName ="";
 
 //What happens when get SingName
 socket.on('SignName', function(data){
-    console.log(data);
     document.getElementById('SignData').innerHTML = data;
     if(dataSignName != data){
         MousePicked = false
@@ -143,4 +146,22 @@ socket.on('SignName', function(data){
     $('.id_100 option').removeAttr('selected')
     $('.id_100 option[value='+data+']').attr('selected','selected');
     }
+})
+
+socket.on('Associatie', function(data){
+    document.getElementById('gebaaras').innerHTML = data;
+})
+
+let videolink = '';
+socket.on('SignVideo', function(data){
+    if(data == 'none'){
+        document.getElementById('SignVideo').style.display = 'none';
+        document.getElementById('bottomtext').style.display = 'none';
+    }
+    else if(videolink != data){
+        document.getElementById('SignVideo').style.display = 'block';
+        videolink = data;
+        document.getElementById('SignVideo').src = data;
+        document.getElementById('bottomtext').style.display = 'block';
+        }
 })

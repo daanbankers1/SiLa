@@ -56,6 +56,9 @@ function fillDropdownTable(){
 let handtype = "";
 //Array foor extended/niet extended vingers
 let dataArray = [];
+//Variable to save the sign got from database
+let SignName = "";
+let SelectedSign = '';
 
 //Socket Listeners
 var listener = io.listen(server);
@@ -71,7 +74,9 @@ var listener = io.listen(server);
           handtype = data;
         })
 
-       
+       socket.on('SignSelected', function(data){
+            SelectedSign = data;
+       })
         
  })
 
@@ -80,6 +85,7 @@ setInterval(checkinDB, 500);
 
 //Function for checking if a Sign is made
 function checkinDB(){
+   
     MongoClient.connect(url, function(err, db) {
         //error handling
         if (err) throw err;
@@ -91,11 +97,43 @@ function checkinDB(){
           if (err) throw err;
         //Sending the sign thats made to the client
          if(TheSign != ""){
+             SignName = TheSign[0].name;
              io.emit('SignName', TheSign[0].name)  
          }   
          else{
           io.emit('SignName', 'none')
+          SignName = "";
          }     
     })  
 })
+}
+
+
+setInterval(checkAssociation, 200);
+function checkAssociation(){
+    if(handtype ==""){
+        handtype = "right";
+    }
+    MongoClient.connect(url, function(err, db) {
+        //error handling
+        if (err) throw err;
+    //GebaarSuggestie
+    var dbo = db.db("SignLanguage");
+    dbo.collection("GebaarAssociatie").find({ handvorm: [SelectedSign, handtype] }).toArray(function(err, Association) {
+    //error handling
+      if (err) throw err;
+    //Ideeën weergeven ter controle
+
+     if(Association != ''){
+    io.emit('Associatie', Association[0].Gebaar)
+      io.emit('SignVideo', Association[0].video); 
+     }   
+     else{
+      io.emit('Associatie', 'none')
+      io.emit('SignVideo', 'none'); 
+     }
+     
+     
+})
+    })
 }

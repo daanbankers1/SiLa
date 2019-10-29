@@ -14,28 +14,50 @@
     
 </head>
 <body>
-    <div id ="videoselectorwrap">
+    <!-- Dit is onzichtbaar -->
     <select id="selection" class="id_100" style="width: 200px;">
         <option data-thumbnail="#" value="0">none</option>
     </select>
+
+    <h2 id="SignData" ></h2>
     
-<div class="lang-select">
-    <button class="btn-select" value=""></button>
-    <div class="b">
-    <ul id="a"></ul>
-    </div>
-    </div>
-    <div id="video_box1">
-                            
-            <div id="video_overlays1"><div id="CheckButtonStart" class="CheckButton">Start</div></div>
+
+<div id="VideoAndSelectorWrap">
+    <div>
+    <h3 id="SystemFeedback">Gedetecteerde handen: 0</h3>
+
+    <div id="video_box1">                         
+        <div id="video_overlays1">
+            <div style="display:flex; flex-direction:column; align-items: center;">
+            <div id="CheckButtonStart" class="CheckButton">Start</div>
+            <span style="color:white;">Het is ook mogelijk om met spatie te starten en stoppen.</span>
+            </div>
+        </div>
+
         <div>
             <video id="video1" autoplay></video>
         </div>
-        </div>
-    <h2 id="SignData" style="width:30%; margin-top:10px;"></h2>
-    <h3 id="SystemFeedback">Er is geen hand gedetecteerd</h3>
-
     </div>
+    <div id="InstructionBottom">Als de Leap Motion uw hand niet detecteert,
+        probeer hem in open houding dicht voor de webcam te houden.
+    </div>
+    </div>
+    
+    <div class="lang-select">
+        <button class="btn-select" value=""></button>
+        <div class="b">
+            <ul id="a"></ul>
+        </div>
+    </div>
+
+    <div id="AssociationWrap">
+        <h1 id="gebaaras" style="margin-bottom:0; margin-top:0; width:100%; text-align: center;"></h1>
+        <iframe id="SignVideo" src='' allow="autoplay"></iframe>
+        <span id="bottomtext">Dit is een suggestief gebaar die U met deze handvorm kunt uitvoeren.</span>
+    </div>
+</div>
+
+    
 </body>
 <script src="leap-0.6.4.js"></script>
 <script src='scriptSignDB.js'></script>

@@ -3,7 +3,7 @@ body{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-h1{
+#HomeHeader{
     background-color:yellow;
     color:black;
     font-size:120px;
@@ -24,15 +24,22 @@ h2{
 
 #exampleandcambox{
     width:100%;
-    border:1px solid black;
+    
+    
     height:auto;
     display:flex;
-    justify-content: center;
+    justify-content: space-between;
+}
+
+#exampleandcambox-left{
+    background-color:grey;
+    border-bottom-right-radius: 20px;
+    width:48%;
+    padding-bottom:5vh;
 }
 
 .examplebox{
     width:50%;
-    border:1px solid red;
     min-height:10vh;
     display:flex;
     align-items: center;
@@ -110,15 +117,27 @@ h2{
 #ProductVideo{
     width:90%;
     height:60vh;
-    background-color:darkslategrey;
+    background-color:black;
     border-radius:10px;
 
+}
+
+#InstructionBottom{
+    margin-top:15px;
+    margin-left:5px;
+    font-weight: bold;
+    max-width:410px;
+    display:none;
 }
 
 #exampleandcambox-right{
     display:flex;
     flex-direction: column;
     justify-content: space-around;
+    width:48%;
+    border-bottom-left-radius: 20px;
+    background-color: darkgrey;
+    padding-bottom:5vh;
 }
 
 #InstructionText{
@@ -170,9 +189,8 @@ h2{
           position: relative;
         }
 
-    #videoandbuttonwrap{
+    #VideoAndSelectorWrap{
         display:flex;
-        flex-direction: column;
     }
 
     #selection{
@@ -181,4 +199,29 @@ h2{
 
    .lang-select{
        width:25%;
+   }
+
+   #SystemFeedback{
+       font-size:33px;
+       margin:0;
+   }
+
+   #SignData{
+    display:none;
+   }
+
+   #AssociationWrap{
+       margin-top:10px;
+       height:70vh;
+       background-color:grey;
+       padding:2%;
+       border-radius:15px;
+       width:500px;
+   }
+
+   #SignVideo{
+    width:500px;
+    height:380px;
+    border: none;
+    border-radius:10px;
    }

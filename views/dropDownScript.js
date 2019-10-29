@@ -5,8 +5,8 @@ function init(){
 //Let the window load before starting a function
 setTimeout(addButtonValues,2000);
 //Setting interval for function that keeps things updated
-setInterval(checkDropDown, 20);
-setTimeout(createVideoFilter1,700);
+setInterval(checkDropDown, 500);
+setTimeout(createVideoFilter1,1000);
 }
 
 //Array for items in fake dropdown
@@ -23,7 +23,7 @@ $('.id_100 option').each(function(){
   let img = $(this).attr("data-thumbnail");
   let text = this.innerText;
   let value = $(this).val();
-  let item = '<li><img src="'+ img +'" alt="" value="'+value+'"/><span>'+ text +'</span></li>';
+  let item = '<li><img src="'+ img +'" alt="" value="'+value+'"/><span>'+ text +'</span>';
   SignArray.push(item);
 })
 //Putting every item in the fake dropdown
@@ -34,6 +34,7 @@ $('.btn-select').html(SignArray[0]);
 $('.btn-select').attr('value', '0');
 
 $('#a li').click(buttonChanged);
+$("#ButtonDropDown").click(showDropDown);
 }
 
 //Change the button values on click
@@ -47,7 +48,8 @@ function buttonChanged(){
    let img = $(this).find('img').attr("src");
    let value = $(this).find('img').attr('value');
    let text = this.innerText;
-   let item = '<li class="listitem"><img src="'+ img +'" alt="" /><span>'+ text +'</span></li>';
+   let item = '<li style=" width:100%; display:flex; justify-content:space-between;"><div style="display:flex; align-items:center;"><img src="'+ img +'" alt="" value="'+value+'"/><span>'+ text +'</span></div><span id="ButtonDropDown">V</span></li>';
+   
   $('.btn-select').html(item);
   $('.btn-select').attr('value', value);
   $(".b").toggle();
@@ -57,9 +59,11 @@ function buttonChanged(){
 }
 
 //Making dropdown visible on button click
-$(".btn-select").click(function(){
-        $(".b").toggle();
-    });
+$("#ButtonDropDown").click(showDropDown);
+
+function showDropDown(){
+  $(".b").toggle();
+}
 
 //Assign html object to variable e
 let e = document.getElementById("selection");
@@ -72,6 +76,7 @@ function checkDropDown(){
 //If an item in the selection(Invisible select html item) is selected the fake dropdown also changes
 $('.id_100').change(function(){
   changeButton();  
+  
 })
 
 //When this function is called the button values change
@@ -79,7 +84,9 @@ function changeButton(){
   let value = e.options[e.selectedIndex].value;
   let text = e.options[e.selectedIndex].innerText;
   let img = e.options[e.selectedIndex].getAttribute('data-thumbnail');
-  let item = '<li><img src="'+ img +'" alt="" /><span>'+ text +'</span></li>';
+  let item = '<li style=" width:100%; display:flex; justify-content:space-between;"><div style="display:flex; align-items:center;"><img src="'+ img +'" alt="" value="'+value+'"/><span>'+ text +'</span></div><span id="ButtonDropDown" >V</span></li>';
   $('.btn-select').attr('value', value);
   $('.btn-select').html(item);
+  $("#ButtonDropDown").click(showDropDown);
+  socket.emit('SignSelected', e.options[e.selectedIndex].innerText);
 }

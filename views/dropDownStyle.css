@@ -55,6 +55,7 @@
     border-radius: 5px;
     background-color: #fff;
     border: 1px solid #ccc;
+
    
   }
   .btn-select li{
@@ -83,4 +84,20 @@
   
   .lang-select{
     margin-left: 50px;
+  }
+
+  #ButtonDropDown{
+    border:1px solid black; 
+    border-radius:5px;
+    width:10%; 
+    background-color:darkgrey; 
+    height:100px; 
+    display:flex; 
+    justify-content:center;
+    align-items:center;
+  }
+
+  #ButtonDropDown:hover{
+    cursor:pointer;
+    background-color:lightgrey;
   }
