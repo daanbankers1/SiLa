@@ -6,6 +6,7 @@ function init(){
 setTimeout(addButtonValues,2000);
 //Setting interval for function that keeps things updated
 setInterval(checkDropDown, 20);
+setTimeout(createVideoFilter1,700);
 }
 
 //Array for items in fake dropdown
@@ -22,7 +23,7 @@ $('.id_100 option').each(function(){
   let img = $(this).attr("data-thumbnail");
   let text = this.innerText;
   let value = $(this).val();
-  let item = '<li ><img src="'+ img +'" alt="" value="'+value+'"/><span>'+ text +'</span></li>';
+  let item = '<li><img src="'+ img +'" alt="" value="'+value+'"/><span>'+ text +'</span></li>';
   SignArray.push(item);
 })
 //Putting every item in the fake dropdown

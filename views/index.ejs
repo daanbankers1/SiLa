@@ -12,17 +12,40 @@
        </script> 
 </head>
 <body>
-    <h1>Welcome</h1>
-    <h2>Steek beide handen in de lucht om verder te gaan!</h2>
+    <h1>SiLa</h1>
 
     <div id='exampleandcambox'>
         <div class="examplebox" id='exampleandcambox-left'>
-            <h2>Voorbeeld:</h2>
-            <img id="exampleimg" src="InstructionImages/handsup.png" style="width:100%; height:auto;"/>
+           <h2>Wat is SiLa?</h2>
+           <div id="ProductVideo"><h3 style="color:white;">Video</h3></div>
         </div>
         <div class="examplebox" id='exampleandcambox-right'>
-            <h2>Uw Webcam:</h2>
-            <video id="video"  autoplay></video>
+
+            <h2>Wilt u verder naar de volgende pagina?</h2>
+            
+            <div style="display:flex; flex-direction:row; justify-content: space-between;">
+
+                <div id="videoandbuttonwrap">
+                        <div id="CheckButtonsWrap">
+                            <!-- <div id="CheckButtonStart" class="CheckButton">Start</div> -->
+                            <!-- <div id="CheckButtonStop" class="CheckButton">Stop</div> -->
+                        </div>
+
+                        <div id="video_box">
+                            
+                            <div id="video_overlays"><div id="CheckButtonStart" class="CheckButton">Start</div></div>
+                        <div>
+                            <video id="video" autoplay></video>
+                        </div>
+                        </div>
+                </div>
+            <div id='InstructionText'>
+                <b>Om verder te gaan druk op <span style="color:lime; font-size:22px;">start</span> en houd je hand OPEN voor de webcam. Zorg dat je hand de webcam ongeveer vult.</b><br><br>
+                <i><span style="color:red;">Als het niet lukt </span>probeer te spelen met afstand en zorg ervoor dat je je hand niet overstrekt maar ontspannen open houd.</i>
+
+            </div>
+        </div>
+
         </div>
     </div>
 </body>

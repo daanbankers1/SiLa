@@ -4,7 +4,7 @@ body{
 }
 
 h1{
-    
+    background-color:yellow;
     color:black;
     font-size:120px;
     width:100%;
@@ -34,22 +34,36 @@ h2{
     width:50%;
     border:1px solid red;
     min-height:10vh;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 #video{
-    width:100%;
+    transition-duration:0.3s;
+    height:300px;
+    width:auto;
+    border:10px solid red;
+    border-radius:10px;
+    z-index:-1;
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
 }
 
 #video1{
-    width:100%;
+    width:400px;
     border:10px solid red;
     border-radius:10px;
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
 }
 
 #videoselectorwrap{
-    width:30%;
+    width:100%;
     height:auto;
-    flex-wrap:wrap;
+    display:flex;
 
 }
 
@@ -58,7 +72,7 @@ h2{
     height:auto;
     display:flex;
     justify-content:space-around;
-
+    margin-bottom:2vh;
 }
 
 .CheckButton{
@@ -92,3 +106,79 @@ h2{
 #CheckButtonStop:hover{
     background-color:rgb(255, 88, 88);
 }
+
+#ProductVideo{
+    width:90%;
+    height:60vh;
+    background-color:darkslategrey;
+    border-radius:10px;
+
+}
+
+#exampleandcambox-right{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#InstructionText{
+    height:300px;
+    font-size:21px;
+    width:auto;
+    margin-left:15px;
+}
+
+#video_overlays {
+    transition-duration:0.3s;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.85);
+    margin-top:10px;
+      margin-left:10px;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #video_box{
+      position: relative;
+      
+    height:300px;
+    width:300px;
+    
+    }
+
+    #video_overlays1 {
+        transition-duration:0.3s;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.85);
+        margin-top:11px;
+          margin-left:9px;
+        z-index: 2;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #video_box1{
+          position: relative;
+        }
+
+    #videoandbuttonwrap{
+        display:flex;
+        flex-direction: column;
+    }
+
+    #selection{
+        display:none;
+    }
+
+   .lang-select{
+       width:25%;
+   }

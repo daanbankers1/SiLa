@@ -3,6 +3,17 @@ var video = document.getElementById('video1');
 
 //Creating socket connection
 const socket = io.connect("http://localhost:8000"); 
+
+$(window).resize(createVideoFilter1);
+
+function createVideoFilter1(){
+    console.log(video.clientWidth);
+    document.getElementById('video_box1').style.width = '410px';
+    document.getElementById('video_box1').style.height = video.clientHeight + 10 + 'px';
+}
+
+
+
 //What happens when we get the signarray
 socket.once('SignArray', function(data){
     console.log(data);
@@ -33,12 +44,8 @@ function checkHand(){
         if(frame.hands.length > 0)
         {
         //Feedback geven over of er handen in beeld zijn en hoeveel
-        if(frame.hands.length > 0 && frame.hands.length < 2){
-            $('#SystemFeedback').text('Er is '+frame.hands.length+' hand gedetecteerd')
-        }
-        else if(frame.hands.length > 1){
-            $('#SystemFeedback').text('Er zijn '+frame.hands.length+' handen gedetecteerd') 
-        }
+            $('#SystemFeedback').text('Gedetecteerde handen:'+ frame.hands.length) 
+        
       
         //Fingerextendarray resetten voordat er nieuwe data ingestopt word
         fingerextendarray = [];
@@ -65,7 +72,7 @@ function checkHand(){
     else{
         fingerextendarray = [];
         socket.emit('fingerarray', fingerextendarray)
-        document.getElementById('SystemFeedback').innerHTML = 'Er is geen hand gedetecteerd';
+        document.getElementById('SystemFeedback').innerHTML = 'Gedetecteerde handen: 0';
     }
 }
 
@@ -83,31 +90,42 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 let checkHandInterval = "";
 
 //Starting the sign recognition
-$('#CheckButtonStart').click(function(){
-    document.getElementById('video1').style.border = "10px solid rgb(8, 255, 8)";
-    checkHandInterval = setInterval(checkHand,500);
-})
+$('#CheckButtonStart').click(StartHandCheck)
 
 //Stopping the sign recognition
-$('#CheckButtonStop').click(function(){
-    document.getElementById('video1').style.border = "10px solid red";
-    clearInterval(checkHandInterval)
-    document.getElementById('SystemFeedback').innerHTML = 'Er is geen hand gedetecteerd';
-})
+$('#CheckButtonStop').click(StopHandCheck)
 
 //Start en stop with space
 document.body.onkeyup = function(e){
     if(e.keyCode == 32){
         if(document.getElementById('video1').style.border == "10px solid rgb(8, 255, 8)"){
-            document.getElementById('video1').style.border = "10px solid red";
-            clearInterval(checkHandInterval)  
-            document.getElementById('SystemFeedback').innerHTML = 'Er is geen hand gedetecteerd';
+            StopHandCheck();
         }
         else{
-            document.getElementById('video1').style.border = "10px solid rgb(8, 255, 8)";
-            checkHandInterval = setInterval(checkHand,500);
+            StartHandCheck();
         }
     }
+}
+
+//Start Sign Recognition Function
+function StartHandCheck(){
+    document.getElementById('video1').style.border = "10px solid rgb(8, 255, 8)";
+    document.getElementById('video_overlays1').style.backgroundColor = 'rgba(0, 0, 0, 0.0)'
+    document.getElementById('video_overlays1').innerHTML = '<div id="CheckButtonStop" style="width:50%;"class="CheckButton">Stop</div>';
+    document.getElementById('video_overlays1').style.alignItems = 'flex-start';
+    checkHandInterval = setInterval(checkHand,500);
+    $('#CheckButtonStop').click(StopHandCheck)
+}
+
+//Stop Sign Recognition Function
+function StopHandCheck(){
+    document.getElementById('video1').style.border = "10px solid red";
+    document.getElementById('video_overlays1').style.backgroundColor = 'rgba(0, 0, 0, 0.85)'
+    document.getElementById('video_overlays1').innerHTML = '<div id="CheckButtonStart" class="CheckButton">Start</div>';
+    document.getElementById('video_overlays1').style.alignItems = 'center';
+    clearInterval(checkHandInterval)
+    $('#CheckButtonStart').click(StartHandCheck)
+    document.getElementById('SystemFeedback').innerHTML = 'Gedetecteerde handen: 0';
 }
 
 //variable for the SignName to check later on 
