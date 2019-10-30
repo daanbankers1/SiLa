@@ -56,6 +56,7 @@ $('#CheckButtonStart').click(Start)
 //Stopping the sign recognition
 $('#CheckButtonStop').click(StopRec)
 
+//Start sign recognition function
 function Start(){
     document.getElementById('video').style.border = "10px solid rgb(8, 255, 8)";
     document.getElementById('video_overlays').style.backgroundColor = 'rgba(0, 0, 0, 0.0)'
@@ -65,6 +66,7 @@ function Start(){
     $('#CheckButtonStop').click(StopRec)
 }
 
+//Stop sign recognition function
 function StopRec(){
     document.getElementById('video').style.border = "10px solid red";
     document.getElementById('video_overlays').style.backgroundColor = 'rgba(0, 0, 0, 0.85)'

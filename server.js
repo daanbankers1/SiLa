@@ -108,7 +108,7 @@ function checkinDB(){
 })
 }
 
-
+//Checking if there is any associations for the HandFigure made
 setInterval(checkAssociation, 200);
 function checkAssociation(){
     if(handtype ==""){
@@ -117,17 +117,17 @@ function checkAssociation(){
     MongoClient.connect(url, function(err, db) {
         //error handling
         if (err) throw err;
-    //GebaarSuggestie
+    //Getting the name and video of the suggestion
     var dbo = db.db("SignLanguage");
     dbo.collection("GebaarAssociatie").find({ handvorm: [SelectedSign, handtype] }).toArray(function(err, Association) {
     //error handling
       if (err) throw err;
-    //Ideeën weergeven ter controle
-
+    //If the association is something send it to client
      if(Association != ''){
     io.emit('Associatie', Association[0].Gebaar)
       io.emit('SignVideo', Association[0].video); 
-     }   
+     }  
+     //If association is nothing send none to client 
      else{
       io.emit('Associatie', 'none')
       io.emit('SignVideo', 'none'); 

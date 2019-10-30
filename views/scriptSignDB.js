@@ -148,16 +148,21 @@ socket.on('SignName', function(data){
     }
 })
 
+
+//Getting Association Name
 socket.on('Associatie', function(data){
     document.getElementById('gebaaras').innerHTML = data;
 })
 
 let videolink = '';
+//Getting Association Video
 socket.on('SignVideo', function(data){
+    //If theres no video dont show iframe
     if(data == 'none'){
         document.getElementById('SignVideo').style.display = 'none';
         document.getElementById('bottomtext').style.display = 'none';
     }
+    //If video is not same and is a link, show video
     else if(videolink != data){
         document.getElementById('SignVideo').style.display = 'block';
         videolink = data;
