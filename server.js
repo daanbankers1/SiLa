@@ -10,7 +10,6 @@ var server = http.createServer(app);
 server.listen(8000);
 app.use(express.static('views'))
 var io = require('socket.io').listen(server); 
-var listener = io.listen(server);
 
 //Array for all signs out of database
 let SignArray = [];
